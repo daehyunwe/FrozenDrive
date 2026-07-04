@@ -1,0 +1,24 @@
+# @package _global_
+defaults:
+  - /runner/default
+  # - _self_  # make sure override
+
+
+runner:
+  num_workers: 0 # 0
+  prefetch_factor: 2 # 2
+  persistent_workers: false # false
+  checkpointing_steps: 5
+  train_batch_size: 1
+  validation_steps: 5
+  max_train_steps: 7  # if set, will ignore epoch num and break
+  lr_scheduler: constant
+  display_per_epoch: 3125  # so that tqdm updates per 2 iters
+  validation_times: 1
+  validation_index: [889,895,902] #[204, 912, 1828]
+  enable_xformers_memory_efficient_attention: true
+
+try_run: true
+debug: true
+seed: 100 
+log_root_prefix: ./dreamer-log/debug

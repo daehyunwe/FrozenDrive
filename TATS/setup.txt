@@ -1,0 +1,15 @@
+conda create -n tats python=3.9
+conda activate tats
+pip install torch==1.* \
+torchvision \
+torchaudio \
+pytorch-lightning==1.5.* \
+einops \
+ftfy \
+h5py \
+imageio \
+imageio-ffmpeg \
+regex \
+scikit-video \
+tqdm \
+pyav

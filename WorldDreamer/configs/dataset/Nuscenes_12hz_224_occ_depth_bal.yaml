@@ -1,0 +1,50 @@
+# @package _global_
+defaults:
+  - /dataset/Nuscenes_224_occ_depth
+  - _self_
+
+video_length: 7
+
+dataset:
+  dataset_type_nuscenes: NuScenesMapDataset_occ
+  dataset_process_root_nuscenes: data/nuscenes_mmdet3d-12Hz/
+  dataset_cache_file_tag_nuscenes: 200x200_12Hz_interp
+  dataset_cache_dirname_nuscenes: nuscenes_map_aux_12Hz_interp
+  dataset_occ_nuscenes: PATH/TO/NUSCENES_OCC
+  dataset_cache_file_nuscenes:
+    - ${..dataset_process_root_nuscenes}../${..dataset_cache_dirname_nuscenes}/train_${..dataset_cache_file_tag_nuscenes}.h5
+    - ${..dataset_process_root_nuscenes}../${..dataset_cache_dirname_nuscenes}/val_${..dataset_cache_file_tag_nuscenes}.h5
+  data:
+    train:
+      nuscenes:
+        type: ${....dataset_type_nuscenes}
+        ann_file: ${....dataset_process_root_nuscenes}nuscenes_interp_12Hz_infos_train.pkl
+        map_bound: ${....map_bound}
+        video_length: ${video_length}
+        start_on_keyframe: False
+        fps: 12
+        image_size: ${....image_size}
+        balancing: True
+        add_firstframe_pair: False
+        ref_random_index: True
+    val:
+      nuscenes:
+        type: ${....dataset_type_nuscenes}
+        ann_file: ${....dataset_process_root_nuscenes}nuscenes_interp_12Hz_infos_val.pkl
+        map_bound: ${....map_bound}
+        video_length: ${video_length}
+        start_on_keyframe: False
+        fps: 12
+        image_size: ${....image_size}
+        add_firstframe_pair: False
+        ref_random_index: True
+    test:
+      nuscenes:
+        type: ${....dataset_type_nuscenes}
+        ann_file: ${....dataset_process_root_nuscenes}nuscenes_interp_12Hz_infos_val.pkl
+        map_bound: ${....map_bound}
+        video_length: ${video_length}
+        fps: 2
+        image_size: ${....image_size}
+        add_firstframe_pair: False
+        ref_random_index: True

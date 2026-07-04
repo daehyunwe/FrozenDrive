@@ -1,0 +1,7 @@
+numba
+Pillow
+PyYAML
+timm
+configobj
+numpy<2
+torch<1.10
